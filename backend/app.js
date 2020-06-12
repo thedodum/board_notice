@@ -24,6 +24,7 @@ app.use('/', indexRouter);
 app.use('/api/users/signUp', usersRouter);
 app.use('/api/users/login', usersRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/board', boardRouter);
 app.use('/api/board/write', boardRouter);
 
 // catch 404 and forward to error handler

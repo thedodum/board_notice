@@ -21,8 +21,16 @@ connection.connect(function (err) {
     }
 });
 
+// all list
+router.get('/', function (req, res) {
+    connection.query('SELECT * FROM board', function (err, rows) {
+        if (err) throw err;
+        res.send(rows);
+    });
+});
+
 // insert
-router.post('/', function (req, res) {
+router.post('/write', function (req, res) {
     var list = {
         'title': req.body.title,
         'email': req.body.email,
