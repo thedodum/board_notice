@@ -34,7 +34,7 @@ router.post('/write', function (req, res) {
     var list = {
         'title': req.body.title,
         'email': req.body.email,
-        'desc': req.body.desc,
+        'contents': req.body.desc,
         'date': req.body.date,
         'file': req.body.file
     };
@@ -47,6 +47,42 @@ router.post('/write', function (req, res) {
     });
 });
 
+// detail
+router.get('/:id', function (req, res, next) {
+    var id = parseInt(req.params.id, 10);
+    connection.query('SELECT * FROM board where no = ' + id, function (err, rows) {
+        if (err) throw err;
+        res.send(rows);
+    });
+});
+
+// delete
+router.delete('/:id', function (req, res) {
+    var id = parseInt(req.params.id, 10);
+    connection.query('DELETE FROM board where no = ' + id, function (err, rows) {
+        if (err) throw err;
+        res.send(rows);
+    });
+});
+
+// update
+router.patch('/:id', function (req, res) {
+    var list = {
+        'title': req.body.title,
+        'email': req.body.email,
+        'desc': req.body.desc,
+        'date': req.body.date,
+        'file': req.body.file
+    };
+    var id = parseInt(req.params.id, 10);
+    var query = connection.query('UPDATE board set title="' + req.body.title + '", contents="' + req.body.desc +'" where no=' + id, function (err, result) {
+        if (err) {
+            console.error(err);
+            throw err;
+        }
+        res.status(200).send('success');
+    });
+});
 
 
 

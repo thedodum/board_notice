@@ -26,6 +26,9 @@ app.use('/api/users/login', usersRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/board', boardRouter);
 app.use('/api/board/write', boardRouter);
+app.use('/api/board/detail', boardRouter);
+app.use('/api/board/update', boardRouter);
+app.use('/api/board/delete', boardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
